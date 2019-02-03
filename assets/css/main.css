@@ -1,4 +1,27 @@
-*{
+@media (min-width: 1000px) and (max-width: 5000px) {
+  
+ #main {
+        margin-left:24%;
+        margin-right:24%;
+        margin-top:10%;
+        font-size: 18px;
+    }
+  
+}
+@media (min-width: 0px) and (max-width: 1000px) {
+  h1{
+    font-size: 56px;
+  }
+ #main {
+        margin-left: 8%;
+        margin-right: 8%;
+        margin-top:20%;
+        font-size: 36px;
+    }
+  
+}
+
+    *{
         font-family: 'Work Sans', sans-serif;
     }
     
@@ -11,9 +34,4 @@
     a:hover{
         color: #160d7c;
     }
-    #main {
-        margin-left:24%;
-        margin-right:24%;
-        margin-top:10%;
-        font-size: 18px;
-    }
+   
