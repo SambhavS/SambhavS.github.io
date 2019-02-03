@@ -1,0 +1,520 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Sambhav</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+		<link rel="icon" type="img/ico" href="images/fav.png">
+	</head>
+	<body>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<div class="content">
+							<div class="inner">
+								<h2>Hey! I'm Sambhav</h2>
+								<p>I study CS at <a href="https://cs.berkeley.edu/">UC Berkeley</a> and will be a software intern at <a href="https://www.intel.com/">Intel</a> this summer.</br> Currently, I'm trying to figure out how to live an optimally meaningful and happy life.
+								<br> As I work on that, I invite you to explore my site.</p>
+								<ul class="icons">
+										<li><a href="https://github.com/SambhavS" class="icon fa-github"><span class="label">Github</span></a></li>
+										<li><a href="https://www.linkedin.com/in/-sambhav" class="icon fa-linkedin-square "><span class="label">LinkedIn</span></a></li>
+										<li><a href="mailto:sambhav@berkeley.edu" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
+										<li><a href="assets/other/resume.pdf" class="icon fa-file-text-o"><span class="label">Resume</span></a></li>
+										<li><a href="https://www.facebook.com/mssg.sambhav" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+								</ul>
+							</div>
+						</div>
+						<nav>
+							<ul>
+								<li><a href="#Projects">Projects</a></li>
+								<li><a href="#Blog">Blog</a></li>
+							</ul>
+						</nav>
+					</header>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Intro -->
+							<article id="Projects">
+								<h2>Projects</h2>
+								<p>I work on lots of side projects for fun. <br> Some of the better ones are listed below.</p>
+								<ul>
+									<li><a href="#Pictacular">Pictacular - Photo Mosaic Maker</a></li>
+									<li><a href="#Tileman">Tileman - Tile Based Game</a></li>
+									<li><a href="#Cardy">Cardy - Virtual Postcard Sender</a></li>
+									<li><a href="#GradeCalc">CS61a Grade Calculator</a></li>
+									<li><a href="#Imagine">Image-ine - Recursive Image Generator</a></li>
+									<li><a href="#CBio">Cheadle Bio - Freelance Website</a></li>
+									<li><a href="#PickIt">PickIt - Bookmarked Image Manager (Team Project)</a></li>
+								</ul>
+							</article>
+
+						<!-- Pictacular -->
+							<article id="Pictacular">
+								<h2>Pictacular</h2>
+								<h3>Photo Mosaic Maker</h3>
+								<p>Pictacular is a mosaic maker. It takes some picture you give it (say, for example, an image of Mario) and recreates it by combining lots and lots of small images. The program has thousands of images to choose from, which helps the mosaic look very similar to the original given image. It's a concept that is better explained by an example than words, so scroll down to take a look.</p>
+								<p> The naive solution would be to divy up the given photo into squares, find the average color of each square by averaging all the pixels in it, and then comparing the average color to the average color of every single photo in the database, finally replacing the square with the image that has the closest average color. This solution however is extremely, extremely slow. So slow, in fact, that you can't practically run it on your computer. </p>
+								<p>I used dynamic programming to significantly speed up the process. First, I divided the RGB color space into 16**3 or 4096 equally sized color cubes. I mapped each color cube to the nearest picture. This took some a while to run, but after it finished I was able to cache it and use it for future calculations. Instead of comparing each square's average color to all the images in the database, I could instantly find a very close image by seeing what color cube our average color belonged to and getting the corresponding image. This reduced time to find an image from O(D), where we have D images in our database, to O(1). This was a great improvement because we have many images in our database and a very large D.</p>
+								<p>To further improve speed, I approximated the average color of the given pixel, by only using pixels on every 15th row and 15th column. For a 225x225 image, this means sampling 225 pixels instead of 50,625 pixels, reducing the time to find the average color of a pixel by a factor of 225.</p>
+								<h4>Pictacular Demo</h4>
+								<img src="images/mario_orig.jpg" width="100%" />
+								<img src="images/mario_mosaic.png" width="100%" />
+								<p><i>If you open the mosaic image in a new tab, the full-detail image will render & you'll be able to zoom in and see all the little images that were used in making the mosaic.</i></p>
+								<br>
+								<br>
+								<p>Some Projects: 
+									<br>
+									<a href="#Pictacular">Pictacular</a>, 
+									<a href="#Tileman">Tileman</a>, 
+									<a href="#Cardy">Cardy</a>, 
+									<a href="#GradeCalc">CS61a Grade Calculator</a>, 
+									<a href="#Imagine">Image-ine</a>, 
+									<a href="#CBio">Cheadle Bio</a>, 
+									<a href="#PickIt">PickIt</a>
+								</p>
+							</article>
+
+						<!-- Tileman -->
+							<article id="Tileman">
+								<h2>Tileman<h2>
+								<h3>Tile Based Adventure Game</h3>
+								<p>Tiler is an angsty teen, forever pained by the fact that he lives in a world made solely of tiles. In this Pokemon-style game, Tiler walks around endlessly, soothed only by the material comforts of coins, mushrooms, and shoes. Future updates may reveal that Tiler's world is more interesting than he thinks.</p>
+								<p>This was actually the largest solo project I've built, currently at 500+ lines of extremely dense Python; I suspect it would be very hard to make it 20% more dense without sacrificing significant readability. It features random world generation, multiple representation of tiles for easy world-building and memory-efficiency, interactive tiles, keystroke processing, and smooth map rastering and updating.</p>
+								<p>Building this game really taught me to have incredible respect for game studios; even though games often seem silly or 'just fun', they can involve very complex and serious systems that need to work in-lock. Even though Tileman seems like a very simple project, even compared to my other ones, it was a much more complex system to make work.</p>
+								<h4>Tileman Demo </h4>
+								<video width="100%" controls>
+								  <source src="assets/other/tileman.mp4" type="video/mp4">
+								  <source src="assets/other/tileman.ogg" type="video/ogg">
+								</video>
+								<br>
+								<br>
+								<p>Some Projects: 
+									<br>
+									<a href="#Pictacular">Pictacular</a>, 
+									<a href="#Tileman">Tileman</a>, 
+									<a href="#Cardy">Cardy</a>, 
+									<a href="#GradeCalc">CS61a Grade Calculator</a>, 
+									<a href="#Imagine">Image-ine</a>, 
+									<a href="#CBio">Cheadle Bio</a>, 
+									<a href="#PickIt">PickIt</a>
+								</p>
+							</article>
+
+						<!-- Cardy -->
+							<article id="Cardy" >
+								<h2>Cardy</h2>
+								<h3>Virtual Postcard Sender</h3>
+								<p>Cardy is a tool for sending virtual postcards to your friends via email. You tell it where you are and then it searches Flickr for scenic photos around you. Choose one, add a message, enter an email address and your postcard is sent! This is many times faster than the "naive, hand-written" approach to sending postcards. </i> One interesting thing to note is that email protocol doesn't verify the name of the sender, so it is conceivable that an email may not truly come from the apparent sender.</p>
+								<p>Cardy is different from a lot of the other projects I make because it was more of a desktop app than a web app. This means that instead of using HTML/CSS/JS and the related technologies to build the front-end, I used Tkinter, a widget library. The paradigm shares some ideas with web-based user design, but lots of the ideas were new, which was a good learning experience for me. Overall, I think web technologies have a much richer environment and larger community but Tkinter was very good for getting a working prototype up and running on my computer without having to worry about makign AJAX calls. It was also a pretty fun experience because Tkinter is a python library which meant I got to use Python for both the front  and back end. That sort of luxury is usually reserved for JavaScript enthusiasts (client-side js + node.js) but this let me be king for a day.</p>
+								<p> It was also fun stringing up a whole bunch of APIs together and getting a pretty cool result with not a whole lot of lines. The process sort of reminded me of IFTTT. The coolest thing was learning about the email exploit and sending a few friends 'emails from the future' sent from their own email address.</p>
+								<h4>Cardy GUI</h4>
+								<img src="images/cardyGUI.png" width="100%" />
+								<br>
+								<h4>Received Email</h4>
+								<img src="images/cardyemail.png" width="100%" />
+								<br>
+								<br>
+								<p>Some Projects: 
+									<br>
+									<a href="#Pictacular">Pictacular</a>, 
+									<a href="#Tileman">Tileman</a>, 
+									<a href="#Cardy">Cardy</a>, 
+									<a href="#GradeCalc">CS61a Grade Calculator</a>, 
+									<a href="#Imagine">Image-ine</a>, 
+									<a href="#CBio">Cheadle Bio</a>, 
+									<a href="#PickIt">PickIt</a>
+								</p>
+							</article>
+
+							<!-- CS61A Grade Calculator -->
+							<article id="GradeCalc">
+								<h2>CS61A Grade Calculator</h2>
+								<p>Towards the end of the Fall 2017 semester, many students in CS61a, the first programming course for majors, wanted to know their final grade. The problem was that the grade portal poorly communicated information about your grade; some projects would have multiple scores next to them, different types of assignments were worth different sorts of points, the grade system had mathematical rules about the limitations of those points, and there was no automatic point counter. </p>
+								<p>In short, calculating your grade was a tedious and complex process very much prone to error. I figured programming a solution would not be *that* much harder than calculating my own grade and that my program would be more consistent than me. Also, all the other students would be able to use it as well!</p>
+								<p>I used BeautifulSoup to scrape HTML that the user provided and used the library with some python scripts to extract their grade data (by looking for patterns and idiosyncracies with my own HTML file) and finally calculate the correct scores that corresponded to the course's grading criteria.</p>
+								<p>It was also exciting that over 200 people used the program, according to Github's analytics. Most of my projects are just for me, so this was a unique experience and I'm glad I was able to save my peers from some degree of tedium.</p>
+								<h4>Example Usage</h4>
+								<img src="images/calcpic.png" width="100%" />
+								<br>
+								<br>
+								<p>Some Projects: 
+									<br>
+									<a href="#Pictacular">Pictacular</a>, 
+									<a href="#Tileman">Tileman</a>, 
+									<a href="#Cardy">Cardy</a>, 
+									<a href="#GradeCalc">CS61a Grade Calculator</a>, 
+									<a href="#Imagine">Image-ine</a>, 
+									<a href="#CBio">Cheadle Bio</a>, 
+									<a href="#PickIt">PickIt</a>
+								</p>
+							</article>
+
+							<!-- Image-ine -->
+							<article id="Imagine">
+								<h2>Image-ine</h2>
+								<h3>Recursive Image Generator</h3>
+								<p>Image-ine is a simple recursive image generator. It was one of my first libraries using Pillow, wa fork of the Python Imaging Library (PIL) and one of my favorite libaries to use in general, largely because it's well-designed and image-construction projects are always fun; even when you mess up you get an interestingly-wrong image instead of an error message or wrong number.</p>
+								<p>The program takes in a user submitted square photo, and makes a grid of smaller copies of the photo. It tints all the images (using average-color data from the submitted photo), to make the final recursive image, which looks very much like the original. As you increase the number of photos, each photo becomes smaller and thus harder to see individually, but the overall image looks more and more like the original.</p>
+								<h4>Original</h4>
+								<img src="images/antonorig.jpg" width="100%" />
+								<br>
+								<br>
+								<h5>Outputted image, made of 20x20 (400) mini-images</h5>
+								<img src="images/antonI1.jpg" width="100%" />
+								<br>
+								<br>
+								<h5>Outputted image, made of 40x40 (1600) mini-images</h5>
+								<img src="images/antonI2.jpg" width="100%" />
+								<br>
+								<br>
+								<p>Some Projects: 
+									<br>
+									<a href="#Pictacular">Pictacular</a>, 
+									<a href="#Tileman">Tileman</a>, 
+									<a href="#Cardy">Cardy</a>, 
+									<a href="#GradeCalc">CS61a Grade Calculator</a>, 
+									<a href="#Imagine">Image-ine</a>, 
+									<a href="#CBio">Cheadle Bio</a>, 
+									<a href="#PickIt">PickIt</a>
+								</p>	
+							</article>
+
+							<!-- Cheadle Bio -->
+							<article id="CBio">
+								<h2>Cheadle Bio</h2>
+								<h3>Freelance Website</h3>
+								<p>Cheadle Bio is a freelance project I made for a biology teacher at my high school. It was a time to learn more about work on the front-end (many hours tweaking the base template to fit Mr.Cheadle's needs) and become more comfortable with client-side JavaScript. Freelancing taught me a lot, especially that software is often about solving the problem of the user and that means learning a lot about your user and their needs. As seen below, it includes two passwords protected links that take students to Google Drive folders that have various resources for learning more about biology.</p>
+								<h4>Landing page</h4>
+								<img src="images/cheadleland.png" width="100%" />
+								<br>
+								<br>
+								<h4>Password protected files</h4>
+								<img src="images/cheadlefiles.png" width="100%" />
+								<br>
+								<br>
+								<p>Some Projects: 
+									<br>
+									<a href="#Pictacular">Pictacular</a>, 
+									<a href="#Tileman">Tileman</a>, 
+									<a href="#Cardy">Cardy</a>, 
+									<a href="#GradeCalc">CS61a Grade Calculator</a>, 
+									<a href="#Imagine">Image-ine</a>, 
+									<a href="#CBio">Cheadle Bio</a>, 
+									<a href="#PickIt">PickIt</a>
+								</p>
+							</article>
+
+							<!-- PickIt -->
+							<article id="PickIt">
+								<h2>PickIt</h2>
+								<h3>Bookmarked Image Manager (Team Project)</h3>
+								<p>PickIt was our team project at PennApps. I worked on writing the server-side Node.js APIs but my friend Anton, who I should mention is the smartest person I know and I know a lot of smart people, really carried the day for the whole project, hacking 3+ times faster than me and simply not sleeping.</p>
+								<p>PickIt is a chrome-extension + website that lets you collect images online by right clicking and "PickIt"-ing them. It saves your images to the website, let's you tag them, and lets you search images based on tags. Basically, a rather primitive version of Pinterest. None of us are front-end experts so the front-end is a little plain, but the backend technology ended up being very cool and I was very excited that we were able to have all the parts of the system working together.</p>
+								<p>It was a challenge for all of us because it was the first independent project that used AWS, databases, server-side code, a chrome extension, and front-end code all together. It was additionally challenging for me because it was my first nontrivial node.js/express project, the first time I've used a database at all for any project, and the first time I used anything from AWS. 
+								<p>Much of my code got scrapped when we changed the specification of our database and we didn't win anything, but this was one of my favorite projects to have ever worked on. I got to work with Anton (who is one of my few best friends) after a long time (he goes to MIT which is pretty far from Berkeley), felt like I got a crash course in a host of important technologies, and also finally experienced working on a succesful team project. I'm grateful for the experience and am looking forward to PennApps round 3!</p>
+								<h4>Pick your image</h4>
+								<img src="images/clientpick.png" width="100%" />
+								<br>
+								<br>
+								<h4>Add some tags</h4>
+								<img src="images/savedpick.png" width="100%" />
+								<br>
+								<br>
+								<h4>Search through pictures</h4>
+								<img src="images/loggedpick.png" width="100%" />
+								<br>
+								<br>
+								<p>Some Projects: 
+									<br>
+									<a href="#Pictacular">Pictacular</a>, 
+									<a href="#Tileman">Tileman</a>, 
+									<a href="#Cardy">Cardy</a>, 
+									<a href="#GradeCalc">CS61a Grade Calculator</a>, 
+									<a href="#Imagine">Image-ine</a>, 
+									<a href="#CBio">Cheadle Bio</a>, 
+									<a href="#PickIt">PickIt</a>
+								</p>
+							</article>
+
+							<!-- Blog -->
+							<article id="Blog" >
+								<h2>Blog</h2>
+								<p>I write informally and honestly on my blog, <a href="notes/allposts.html">Sambhav Writes</a>.
+									<br/>It has writing that is more personal than professional.</p>
+								
+								
+								
+							</article>
+						
+
+						<!-- Elements -->
+							<article id="elements">
+								<h2 class="major">Elements</h2>
+
+								<section>
+									<h3 class="major">Text</h3>
+									<p>This is <b>bold</b> and this is <strong>strong</strong>. This is <i>italic</i> and this is <em>emphasized</em>.
+									This is <sup>superscript</sup> text and this is <sub>subscript</sub> text.
+									This is <u>underlined</u> and this is code: <code>for (;;) { ... }</code>. Finally, <a href="#">this is a link</a>.</p>
+									<hr />
+									<h2>Heading Level 2</h2>
+									<h3>Heading Level 3</h3>
+									<h4>Heading Level 4</h4>
+									<h5>Heading Level 5</h5>
+									<h6>Heading Level 6</h6>
+									<hr />
+									<h4>Blockquote</h4>
+									<blockquote>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan faucibus. Vestibulum ante ipsum primis in faucibus lorem ipsum dolor sit amet nullam adipiscing eu felis.</blockquote>
+									<h4>Preformatted</h4>
+									<pre><code>i = 0;
+
+while (!deck.isInOrder()) {
+    print 'Iteration ' + i;
+    deck.shuffle();
+    i++;
+}
+
+print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
+								</section>
+
+								<section>
+									<h3 class="major">Lists</h3>
+
+									<h4>Unordered</h4>
+									<ul>
+										<li>Dolor pulvinar etiam.</li>
+										<li>Sagittis adipiscing.</li>
+										<li>Felis enim feugiat.</li>
+									</ul>
+
+									<h4>Alternate</h4>
+									<ul class="alt">
+										<li>Dolor pulvinar etiam.</li>
+										<li>Sagittis adipiscing.</li>
+										<li>Felis enim feugiat.</li>
+									</ul>
+
+									<h4>Ordered</h4>
+									<ol>
+										<li>Dolor pulvinar etiam.</li>
+										<li>Etiam vel felis viverra.</li>
+										<li>Felis enim feugiat.</li>
+										<li>Dolor pulvinar etiam.</li>
+										<li>Etiam vel felis lorem.</li>
+										<li>Felis enim et feugiat.</li>
+									</ol>
+									<h4>Icons</h4>
+									<ul class="icons">
+										<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+										<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+										<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+										<li><a href="#" class="icon fa-github"><span class="label">Github</span></a></li>
+									</ul>
+
+									<h4>Actions</h4>
+									<ul class="actions">
+										<li><a href="#" class="button special">Default</a></li>
+										<li><a href="#" class="button">Default</a></li>
+									</ul>
+									<ul class="actions vertical">
+										<li><a href="#" class="button special">Default</a></li>
+										<li><a href="#" class="button">Default</a></li>
+									</ul>
+								</section>
+
+								<section>
+									<h3 class="major">Table</h3>
+									<h4>Default</h4>
+									<div class="table-wrapper">
+										<table>
+											<thead>
+												<tr>
+													<th>Name</th>
+													<th>Description</th>
+													<th>Price</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>Item One</td>
+													<td>Ante turpis integer aliquet porttitor.</td>
+													<td>29.99</td>
+												</tr>
+												<tr>
+													<td>Item Two</td>
+													<td>Vis ac commodo adipiscing arcu aliquet.</td>
+													<td>19.99</td>
+												</tr>
+												<tr>
+													<td>Item Three</td>
+													<td> Morbi faucibus arcu accumsan lorem.</td>
+													<td>29.99</td>
+												</tr>
+												<tr>
+													<td>Item Four</td>
+													<td>Vitae integer tempus condimentum.</td>
+													<td>19.99</td>
+												</tr>
+												<tr>
+													<td>Item Five</td>
+													<td>Ante turpis integer aliquet porttitor.</td>
+													<td>29.99</td>
+												</tr>
+											</tbody>
+											<tfoot>
+												<tr>
+													<td colspan="2"></td>
+													<td>100.00</td>
+												</tr>
+											</tfoot>
+										</table>
+									</div>
+
+									<h4>Alternate</h4>
+									<div class="table-wrapper">
+										<table class="alt">
+											<thead>
+												<tr>
+													<th>Name</th>
+													<th>Description</th>
+													<th>Price</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>Item One</td>
+													<td>Ante turpis integer aliquet porttitor.</td>
+													<td>29.99</td>
+												</tr>
+												<tr>
+													<td>Item Two</td>
+													<td>Vis ac commodo adipiscing arcu aliquet.</td>
+													<td>19.99</td>
+												</tr>
+												<tr>
+													<td>Item Three</td>
+													<td> Morbi faucibus arcu accumsan lorem.</td>
+													<td>29.99</td>
+												</tr>
+												<tr>
+													<td>Item Four</td>
+													<td>Vitae integer tempus condimentum.</td>
+													<td>19.99</td>
+												</tr>
+												<tr>
+													<td>Item Five</td>
+													<td>Ante turpis integer aliquet porttitor.</td>
+													<td>29.99</td>
+												</tr>
+											</tbody>
+											<tfoot>
+												<tr>
+													<td colspan="2"></td>
+													<td>100.00</td>
+												</tr>
+											</tfoot>
+										</table>
+									</div>
+								</section>
+
+								<section>
+									<h3 class="major">Buttons</h3>
+									<ul class="actions">
+										<li><a href="#" class="button special">Special</a></li>
+										<li><a href="#" class="button">Default</a></li>
+									</ul>
+									<ul class="actions">
+										<li><a href="#" class="button">Default</a></li>
+										<li><a href="#" class="button small">Small</a></li>
+									</ul>
+									<ul class="actions">
+										<li><a href="#" class="button special icon fa-download">Icon</a></li>
+										<li><a href="#" class="button icon fa-download">Icon</a></li>
+									</ul>
+									<ul class="actions">
+										<li><span class="button special disabled">Disabled</span></li>
+										<li><span class="button disabled">Disabled</span></li>
+									</ul>
+								</section>
+
+								<section>
+									<h3 class="major">Form</h3>
+									<form method="post" action="#">
+										<div class="field half first">
+											<label for="demo-name">Name</label>
+											<input type="text" name="demo-name" id="demo-name" value="" placeholder="Jane Doe" />
+										</div>
+										<div class="field half">
+											<label for="demo-email">Email</label>
+											<input type="email" name="demo-email" id="demo-email" value="" placeholder="jane@untitled.tld" />
+										</div>
+										<div class="field">
+											<label for="demo-category">Category</label>
+											<div class="select-wrapper">
+												<select name="demo-category" id="demo-category">
+													<option value="">-</option>
+													<option value="1">Manufacturing</option>
+													<option value="1">Shipping</option>
+													<option value="1">Administration</option>
+													<option value="1">Human Resources</option>
+												</select>
+											</div>
+										</div>
+										<div class="field half first">
+											<input type="radio" id="demo-priority-low" name="demo-priority" checked>
+											<label for="demo-priority-low">Low</label>
+										</div>
+										<div class="field half">
+											<input type="radio" id="demo-priority-high" name="demo-priority">
+											<label for="demo-priority-high">High</label>
+										</div>
+										<div class="field half first">
+											<input type="checkbox" id="demo-copy" name="demo-copy">
+											<label for="demo-copy">Email me a copy</label>
+										</div>
+										<div class="field half">
+											<input type="checkbox" id="demo-human" name="demo-human" checked>
+											<label for="demo-human">Not a robot</label>
+										</div>
+										<div class="field">
+											<label for="demo-message">Message</label>
+											<textarea name="demo-message" id="demo-message" placeholder="Enter your message" rows="6"></textarea>
+										</div>
+										<ul class="actions">
+											<li><input type="submit" value="Send Message" class="special" /></li>
+											<li><input type="reset" value="Reset" /></li>
+										</ul>
+									</form>
+								</section>
+
+							</article>
+
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+					</footer>
+
+			</div>
+
+		<!-- BG -->
+			<div id="bg"></div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
