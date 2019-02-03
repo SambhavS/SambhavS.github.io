@@ -1,4 +1,18 @@
 *{
     font-family: 'Work Sans', sans-serif;
 }
-
+i{
+    margin-right: 24px;
+}
+a{
+    color: #4f45d8;
+}
+a:hover{
+    color: #160d7c;
+}
+#main {
+    margin-left:24%;
+    margin-right:24%;
+    margin-top:10%;
+    font-size: 18px;
+}
